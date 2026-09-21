@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¡Feliz 21 de Septiembre!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      padding: 20px;
+      position: relative;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 35px 25px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+      z-index: 10;
+      animation: fadeIn 1s ease-in-out;
+    }
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8rem;
+      color: #e63946;
+      margin-bottom: 10px;
+    }
+    .date-badge {
+      display: inline-block;
+      background-color: #ff4d6d;
+      color: white;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    p.intro {
+      color: #4a4a4a;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+    .btn-reveal {
+      background: linear-gradient(45deg, #ff4d6d, #ff758f);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+      transition: all 0.3s ease;
+    }
+    .btn-reveal:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 24px rgba(255, 77, 109, 0.5);
+    }
+    .secret-message {
+      display: none;
+      margin-top: 25px;
+      padding: 20px;
+      background-color: #fff0f3;
+      border-radius: 16px;
+      border: 1px dashed #ff4d6d;
+      color: #590d22;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      animation: slideUp 0.5s ease-out forwards;
+    }
+    .timer {
+      margin-top: 25px;
+      font-size: 0.85rem;
+      color: #888;
+    }
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 20px;
+      user-select: none;
+      pointer-events: none;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="date-badge">21 DE SEPTIEMBRE</div>
+    <h1>¡Feliz día, mi amor! ❤️</h1>
+    <p class="intro">
+      Hoy es un día súper especial y no quería que terminara sin recordarte lo mucho que te quiero y lo importante que eres para mí.
+    </p>
+
+    <button class="btn-reveal" onclick="toggleMessage()">Presiona aquí 💌</button>
+
+    <div class="secret-message" id="extraMessage">
+      <p>
+        Gracias por estar a mi lado, por cada sonrisa y por todos los momentos juntos. Aunque ande a mil con las cosas del día a día, lo mucho que te quiero siempre está presente. ¡Que tengas una noche hermosa! ✨
+      </p>
+    </div>
+
+    <div class="timer">
+      Llevas <span id="seconds">0</span> segundos viendo este detalle 💕
+    </div>
+  </div>
+
+  <script>
+    function toggleMessage() {
+      const msg = document.getElementById('extraMessage');
+      msg.style.display = (msg.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerText = ['❤️', '💖', '🌸', '✨', '💕'][Math.floor(Math.random() * 5)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+    setInterval(createHeart, 400);
+
+    let sec = 0;
+    setInterval(() => {
+      sec++;
+      document.getElementById('seconds').innerText = sec;
+    }, 1000);
+  </script>
+</body>
+</html>
